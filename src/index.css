@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Bricolage+Grotesque:wght@400;600;700;800&display=swap');
+
+/* Fallback imports for future style tokens */
+@import './styles/tokens.css';
+@import './styles/animations.css';
+
+:root {
+  --bg-base: #040B18;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --gold: #F5A623;
+  --gold-dark: #D4891A;
+  --teal: #00D4B8;
+  --navy: #071428;
+  --text-primary: #F0EDE6;
+  --text-secondary: #8A9BB5;
+  --border: rgba(255, 255, 255, 0.08);
+  --shadow-gold: 0 0 24px rgba(245, 166, 35, 0.15);
+  --shadow-teal: 0 0 24px rgba(0, 212, 184, 0.15);
+  
+  /* robust system font fallbacks guaranteeing font mapping irrespective of network latency */
+  --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
+
+/* Base Utility Classes */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+}

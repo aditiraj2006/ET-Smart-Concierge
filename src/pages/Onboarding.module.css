@@ -1,0 +1,661 @@
+/* Onboarding.module.css */
+.onboardingContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-base);
+}
+
+.gradientMesh {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0, 212, 184, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 30%),
+    radial-gradient(circle at 20% 80%, rgba(0, 212, 184, 0.1) 0%, transparent 40%);
+  z-index: 0;
+}
+
+.particleCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.grainOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  z-index: 10;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoText {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #FFF, var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-display);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.progressContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 200px;
+}
+
+.progressText {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-display);
+}
+
+.progressPct {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.progressTrack {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold));
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(245, 166, 35, 0.5);
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  padding: 0 3rem 2rem 3rem;
+  gap: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+/* Chat Section */
+.chatSection {
+  flex: 0 0 60%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-right: 2rem;
+}
+
+.chatContainer {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  scrollbar-width: none;
+}
+
+.chatContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.message {
+  display: flex;
+  gap: 1rem;
+  max-width: 85%;
+}
+
+.aiMessage {
+  align-self: flex-start;
+}
+
+.userMessage {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.aiAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 212, 184, 0.2), rgba(0, 212, 184, 0.05));
+  border: 1px solid rgba(0, 212, 184, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--teal);
+  box-shadow: 0 0 15px rgba(0, 212, 184, 0.2);
+  flex-shrink: 0;
+}
+
+.aiMessage .messageContent {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--teal);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 16px 16px 16px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.userMessage .messageContent {
+  background: rgba(245, 166, 35, 0.08);
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  padding: 1.2rem 1.5rem;
+  border-radius: 16px 16px 0 16px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #FFF;
+  backdrop-filter: blur(10px);
+}
+
+.optionsMessage {
+  align-self: flex-end;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 100%;
+  flex-direction: row;
+}
+
+.pillBtn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.pillBtn.selected,
+.pillBtn:hover {
+  background: rgba(245, 166, 35, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 20px rgba(245, 166, 35, 0.3);
+}
+
+.typingIndicator {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.typingIndicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 10px var(--teal);
+}
+
+.inputArea {
+  margin-top: auto;
+}
+
+.questionsLeft {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.inputBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  transition: border-color 0.3s ease;
+}
+
+.inputBox:focus-within {
+  border-color: rgba(245, 166, 35, 0.5);
+  box-shadow: 0 0 20px rgba(245, 166, 35, 0.1);
+}
+
+.inputBox input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1.2rem 1.5rem;
+  color: #FFF;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.inputBox input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.sendBtn {
+  background: transparent;
+  border: none;
+  color: var(--gold);
+  padding: 0 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sendBtn:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px rgba(245, 166, 35, 0.5));
+}
+
+/* Profile Section */
+.profileSection {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+.dnaCard {
+  width: 100%;
+  max-width: 450px;
+  height: 100%;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.dnaCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245, 166, 35, 0.5), transparent);
+}
+
+.cardHeader {
+  padding: 2rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardHeader h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.dnaStatus {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dnaStatus::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 8px var(--teal);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 212, 184, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(0, 212, 184, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 212, 184, 0);
+  }
+}
+
+.cardContent {
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  flex: 1;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userAvatarLarge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(245, 166, 35, 0.15);
+}
+
+.infoLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.infoValue {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #FFF;
+}
+
+.goalsContainer .tagsWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.goalTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 212, 184, 0.1);
+  border: 1px solid rgba(0, 212, 184, 0.3);
+  color: var(--teal);
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  box-shadow: 0 0 15px rgba(0, 212, 184, 0.1);
+}
+
+.riskMeterContainer {
+  margin-top: auto;
+}
+
+.gaugeWrapper {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-width: 280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.gauge {
+  width: 100%;
+  overflow: visible;
+}
+
+.gaugeBg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.gaugeFill {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-dasharray: 126;
+  filter: drop-shadow(0 0 6px rgba(245, 166, 35, 0.5));
+}
+
+.gaugeValue {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  font-family: var(--font-display);
+}
+
+
+.errorMessage {
+  padding: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 12px;
+  color: #fc8181;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.completeButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+
+.infoRow {
+  margin-bottom: 1rem;
+}
+
+.personaBadge {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(245, 166, 35, 0.1), rgba(0, 212, 184, 0.1));
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.personaLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+.personaValue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold), var(--teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-display);
+}
+
+/* Disabled input styles */
+.inputBox input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sendBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.sendBtn:disabled:hover {
+  transform: none;
+  filter: none;
+}
+
+/* Scrollbar styling */
+.chatContainer {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) rgba(255, 255, 255, 0.1);
+}
+
+.chatContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatContainer::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.chatContainer::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+/* Message animations */
+.message {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .layout {
+    flex-direction: column;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  .chatSection {
+    flex: 1;
+    padding-right: 0;
+    min-height: 60vh;
+  }
+
+  .profileSection {
+    flex: 0 0 auto;
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .dnaCard {
+    max-height: 500px;
+  }
+
+  .header {
+    padding: 1rem 1.5rem;
+  }
+
+  .progressContainer {
+    width: 150px;
+  }
+
+  .headerRight {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .logoText {
+    font-size: 1rem;
+  }
+
+  .progressText {
+    font-size: 0.7rem;
+  }
+
+  .message {
+    max-width: 95%;
+  }
+
+  .aiMessage .messageContent,
+  .userMessage .messageContent {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .pillBtn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .cardHeader {
+    padding: 1rem;
+  }
+
+  .cardContent {
+    padding: 1.5rem;
+  }
+}

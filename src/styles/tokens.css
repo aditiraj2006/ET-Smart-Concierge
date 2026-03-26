@@ -1,0 +1,96 @@
+/* GlassCard Utilities */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: box-shadow 0.3s ease;
+}
+.glass-glow-gold.glass-hover:hover { box-shadow: var(--shadow-gold); }
+.glass-glow-teal.glass-hover:hover { box-shadow: var(--shadow-teal); }
+
+/* GoldButton Utilities */
+.gold-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.gold-btn-filled {
+  background: var(--gold);
+  color: #000;
+  border: none;
+  box-shadow: 0 4px 15px rgba(245, 166, 35, 0.2);
+}
+.gold-btn-filled:hover {
+  background: #ffb740;
+  box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
+}
+.gold-btn-ghost {
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+}
+.gold-btn-ghost:hover {
+  background: rgba(245, 166, 35, 0.1);
+}
+
+/* Sidebar Utilities */
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  position: fixed;
+  top: 0; left: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-right: 1px solid var(--border);
+  background: rgba(4, 11, 24, 0.8);
+  backdrop-filter: blur(20px);
+  z-index: 50;
+}
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  margin-bottom: 0.25rem;
+}
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+}
+.nav-link.active {
+  color: var(--gold);
+  background: rgba(245, 166, 35, 0.08);
+  border-left: 3px solid var(--gold);
+}
+
+/* Upgrade Card */
+.upgrade-card {
+  margin-top: auto;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(212, 137, 26, 0.15), rgba(4, 11, 24, 0));
+  border: 1px solid rgba(245, 166, 35, 0.2);
+}
+.upgrade-card h4 {
+  color: var(--gold);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}

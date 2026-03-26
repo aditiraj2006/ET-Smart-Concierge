@@ -1,0 +1,98 @@
+.dashboardBg {
+  position: absolute; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: radial-gradient(circle at 50% 100%, rgba(0, 212, 184, 0.1), transparent 50%),
+              radial-gradient(circle at 100% 0%, rgba(245, 166, 35, 0.1), transparent 50%),
+              var(--bg-base);
+  filter: blur(10px); z-index: 1;
+}
+
+.modalOverlay {
+  position: relative; z-index: 10;
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.5); backdrop-filter: blur(8px);
+}
+
+.chatModalWrapper {
+  position: relative; width: 780px; height: 88vh;
+  border-radius: 26px; padding: 2px;
+  background: linear-gradient(135deg, var(--gold), var(--teal), var(--bg-base), var(--gold));
+  background-size: 300% 300%;
+  animation: gradientBorder 8s ease infinite;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 40px rgba(0, 212, 184, 0.15);
+}
+
+@keyframes gradientBorder {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.chatModal {
+  background: rgba(10, 22, 40, 0.85); width: 100%; height: 100%;
+  border-radius: 24px; display: flex; flex-direction: column;
+  position: relative; overflow: hidden; backdrop-filter: blur(24px);
+}
+
+.modalHeader {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 1.75rem; border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+}
+
+.headerLeft { display: flex; gap: 0.75rem; align-items: center;}
+.title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+.pulseIndicator { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulseGreen 2s infinite; }
+@keyframes pulseGreen { 70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } }
+
+.contextChip { background: rgba(245, 166, 35, 0.1); padding: 6px 16px; border-radius: 100px; color: var(--gold); font-size: 0.85rem; border: 1px solid rgba(245, 166, 35, 0.3); font-weight: 600;}
+.closeBtn { background: transparent; border: none; color: var(--text-secondary); cursor: pointer; transition: 0.2s; }
+.closeBtn:hover { color: #fff; transform: scale(1.1); }
+
+.chatArea { flex: 1; padding: 2rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+.chatArea::-webkit-scrollbar { display: none; }
+
+.message { display: flex; flex-direction: column; max-width: 82%; }
+.ai { align-self: flex-start; }
+.user { align-self: flex-end; }
+
+.ai .msgContent { background: linear-gradient(135deg, rgba(0, 212, 184, 0.1), rgba(0, 212, 184, 0.02)); border: 1px solid rgba(0, 212, 184, 0.2); border-radius: 16px 16px 16px 4px; font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; padding: 1rem 1.25rem; color: #fff; }
+.user .msgContent { background: rgba(255,255,255,0.06); border: 1px solid var(--border); border-radius: 16px 16px 4px 16px; color: var(--gold); padding: 1rem 1.25rem; font-size: 1.05rem; }
+
+.typingIndicator { display: flex; gap: 8px; }
+.typingIndicator span { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+
+.planCardWrapper { max-width: 520px; align-self: flex-start; }
+.planCard {
+  background: linear-gradient(145deg, rgba(245, 166, 35, 0.15), rgba(245, 166, 35, 0.03));
+  border: 1px solid rgba(245, 166, 35, 0.3); border-radius: 20px; padding: 1.75rem;
+  backdrop-filter: blur(16px); position: relative; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+.carWatermark { position: absolute; right: -20px; bottom: -20px; opacity: 0.06; width: 300px; transform: rotate(-10deg); color: var(--text-primary); }
+.planTitle { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.35rem; color: #fff; margin-bottom: 1.5rem; position: relative; z-index: 2;}
+
+.planSteps { display: flex; flex-direction: column; gap: 1.5rem; border-left: 2px dashed rgba(255,255,255,0.2); margin-left: 14px; padding-left: 24px; position: relative; z-index: 2;}
+.step { position: relative; }
+.stepNum { position: absolute; left: -39px; top: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--bg-base); border: 2px solid var(--gold); color: var(--gold); display: flex; align-items: center; justify-content: center; font-weight: 700; box-shadow: 0 0 10px rgba(245, 166, 35, 0.3); }
+.stepTitle { font-weight: 600; font-size: 1.1rem; margin-bottom: 4px; }
+.stepDesc { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px; }
+
+.progressBar { width: 100%; max-width: 250px; height: 6px; background: rgba(0,0,0,0.4); border-radius: 3px; }
+.progressFill { height: 100%; background: var(--teal); border-radius: 3px; box-shadow: 0 0 10px var(--teal); }
+.stepChip { display: inline-block; background: rgba(0, 212, 184, 0.15); border: 1px solid rgba(0, 212, 184, 0.4); color: var(--teal); padding: 4px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; margin-top: 4px; }
+
+.planActions { display: flex; gap: 1rem; margin-top: 2rem; position: relative; z-index: 2; }
+.pillActions { display: flex; flex-direction: row; gap: 12px; }
+.actionPill { background: rgba(0, 212, 184, 0.15); border: 1px solid rgba(0, 212, 184, 0.4); color: var(--teal); padding: 10px 20px; border-radius: 100px; font-weight: 500; cursor: pointer; transition: 0.2s; }
+.actionPill.outline { background: transparent; border-color: rgba(255,255,255,0.2); color: var(--text-secondary); }
+
+.modalFooter { padding: 1.5rem; background: rgba(255,255,255,0.02); border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 1.25rem; }
+.inputContainer { display: flex; align-items: center; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; padding: 0.5rem 0.5rem 0.5rem 1.5rem; }
+.inputContainer input { flex: 1; background: transparent; border: none; color: #fff; font-size: 1.05rem; outline: none; }
+.sendMessageBtn { background: var(--gold); border: none; width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: 0.2s;}
+.sendMessageBtn:hover { transform: scale(1.05) rotate(-10deg); box-shadow: 0 4px 15px rgba(245, 166, 35, 0.5); color: #000; }
+
+.quickChips { display: flex; gap: 0.75rem; overflow-x: auto; padding-bottom: 4px; }
+.quickChips::-webkit-scrollbar { display: none; }
+.chip { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: var(--text-secondary); padding: 8px 16px; border-radius: 12px; cursor: pointer; white-space: nowrap; transition: 0.2s; }
+.chip:hover { border-color: rgba(255,255,255,0.5); color: #fff; background: rgba(255,255,255,0.05); }

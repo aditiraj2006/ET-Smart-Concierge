@@ -1,0 +1,11 @@
+# Python 3.11+ recommended
+# Check your version: python --version
+fastapi==0.111.0
+uvicorn==0.29.0
+google-genai==1.10.0
+python-dotenv==1.0.1
+pydantic==2.7.0
+pydantic-settings==2.2.1
+python-multipart==0.0.9
+httpx>=0.28.1
+firebase-admin==6.5.0

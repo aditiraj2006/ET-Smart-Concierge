@@ -1,0 +1,35 @@
+# ── Environment / secrets ─────────────────────────────────────────────────────
+.env
+.env.*
+
+# ── Firebase service-account credentials ──────────────────────────────────────
+firebase_credentials.json
+*-firebase-adminsdk-*.json
+*.json
+
+# ── Python bytecode & cache ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+
+# ── Pytest / coverage ─────────────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Legacy JSON data storage (replaced by Firestore) ─────────────────────────
+data/users/
+
+# ── Editor & OS ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
