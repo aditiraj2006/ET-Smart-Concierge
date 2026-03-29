@@ -9,6 +9,7 @@ import Signup from './pages/Signup';
 import Onboarding from './pages/Onboarding';
 import Dashboard from './pages/Dashboard';
 import ChatAssistant from './pages/ChatAssistant';
+import Journey from './pages/Journey';
 
 const NewsFeed     = lazy(() => import('./pages/NewsFeed'));
 const Opportunities = lazy(() => import('./pages/Opportunities'));
@@ -48,6 +49,7 @@ export default function App() {
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="chat"      element={<ChatAssistant />} />
+            <Route path="journey" element={<Journey />} />
             <Route
               path="news"
               element={

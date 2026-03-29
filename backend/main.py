@@ -53,6 +53,7 @@ app.include_router(news.router,          prefix="/api/news",          tags=["New
 app.include_router(opportunities.router, prefix="/api/opportunities", tags=["Opportunities"])
 
 
+
 # ── Health check ───────────────────────────────────────────────────────────
 @app.get("/", tags=["Health"])
 async def health_check():

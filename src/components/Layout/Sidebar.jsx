@@ -7,11 +7,11 @@ import '../../styles/tokens.css';
 
 const NAV_ITEMS = [
   { icon: LayoutDashboard, label: "Dashboard",  path: "/dashboard" },
-  { icon: Target,          label: "Goals",      path: "/goals" },
+  { icon: Target,          label: "Journey",      path: "/journey" },
   { icon: Bot,             label: "Assistant",  path: "/chat" },
   { icon: Newspaper,       label: "News",       path: "/news" },
   { icon: Brain,      label: "Opinions",  path: "/opportunities" },
-  { icon: Settings,        label: "Settings",   path: "/settings" },
+  { icon: Settings, label: "Settings", path: "/onboarding?mode=edit" }
 ];
 
 /** Derive initials from a display-name string. */

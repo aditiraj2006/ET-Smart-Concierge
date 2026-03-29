@@ -1,0 +1,318 @@
+.journeyContainer {
+  min-height: 100vh;
+  background: var(--bg-base);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 30%, rgba(0, 212, 184, 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(245, 166, 35, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.backBtn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: all 0.2s;
+}
+
+.backBtn:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.personaCard {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background: linear-gradient(135deg, rgba(0,212,184,0.1), rgba(245,166,35,0.05));
+  border: 1px solid rgba(0,212,184,0.3);
+}
+
+.personaIcon {
+  font-size: 3rem;
+}
+
+.personaCard h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+.personaCard p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.actionItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.actionNumber {
+  background: var(--gold);
+  color: #000;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.actionItem p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.articleGrid, .classesGrid, .toolsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.articleCard, .classCard, .toolCard {
+  padding: 1rem;
+  position: relative;
+}
+
+.recTitle {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.recMeta {
+  margin: 0.5rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.primeBadge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--gold);
+  color: #000;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.readBtn, .registerBtn {
+  background: transparent;
+  border: 1px solid var(--teal);
+  color: var(--teal);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.readBtn:hover, .registerBtn:hover {
+  background: var(--teal);
+  color: #000;
+}
+
+.marketsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.marketItem {
+  padding: 0.75rem 1.5rem;
+  background: rgba(0,212,184,0.1);
+  border: 1px solid rgba(0,212,184,0.3);
+  border-radius: 40px;
+  font-weight: 500;
+}
+
+.marketLink {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.marketLink:hover {
+  color: var(--teal);
+  text-decoration: underline;
+}
+
+.eventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.eventCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.eventDate {
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: rgba(245,166,35,0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.eventCard p {
+  flex: 1;
+  margin: 0;
+}
+
+.classIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.watchLabel {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--teal);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.watchLabel:hover {
+  text-decoration: underline;
+}
+
+.toolCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+}
+
+.toolIcon {
+  font-size: 1.5rem;
+}
+
+.consultCta {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.consultBtn {
+  background: linear-gradient(135deg, var(--teal), var(--gold));
+  border: none;
+  color: #000;
+  padding: 1rem 2rem;
+  border-radius: 40px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.consultBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,212,184,0.4);
+}
+
+.loadingContainer, .errorContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--bg-base);
+  color: #fff;
+}
+
+.loadingSpinner {
+  font-size: 2rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.retryBtn {
+  background: var(--gold);
+  border: none;
+  color: #000;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .actionsGrid, .articleGrid, .classesGrid, .toolsGrid {
+    grid-template-columns: 1fr;
+  }
+}

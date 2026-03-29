@@ -1,0 +1,70 @@
+.wrapper {
+  margin: 0.75rem 0 1rem;
+}
+
+.row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(245, 166, 35, 0.45);
+  background: linear-gradient(120deg, rgba(245, 166, 35, 0.24), rgba(245, 166, 35, 0.12));
+  color: #ffd596;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.skeletonPill {
+  width: min(100%, 280px);
+  min-width: 180px;
+  min-height: 2rem;
+  color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeletonPill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  animation: shimmer 1.25s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    margin: 0.6rem 0 0.9rem;
+  }
+
+  .row {
+    gap: 0.5rem;
+  }
+
+  .pill {
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: 0.78rem;
+    padding: 0.48rem 0.72rem;
+  }
+}

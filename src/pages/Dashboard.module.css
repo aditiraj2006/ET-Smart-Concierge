@@ -6,6 +6,7 @@
   gap: 1.5rem;
   max-width: 1600px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .dotGrid {
@@ -271,6 +272,14 @@
   font-size: 0.85rem;
 }
 
+.labelShiftDown {
+  transform: translateY(18px);
+}
+
+.labelShiftUp {
+  transform: translateY(-14px);
+}
+
 .actionCards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -326,7 +335,6 @@
   width: 100%;
   overflow-x: auto;
   padding-bottom: 1rem;
-  cursor: pointer;
 }
 
 .newsScrollContainer::-webkit-scrollbar {
@@ -344,12 +352,16 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .newsThumb {
   height: 120px;
   position: relative;
   padding: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-size: cover;
+  background-position: center;
 }
 
 .categoryChip {
@@ -377,10 +389,22 @@
 
 /* Right Sidebar */
 .sidebarRight {
-  flex: 0 0 280px;
+  flex: 0 0 320px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.sidebarRight::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebarRight::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
 }
 
 .chatWidget {
@@ -547,6 +571,46 @@
   font-family: var(--font-display);
 }
 
+.tickerDelta {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.sparkline {
+  width: 84px;
+  height: 26px;
+  overflow: visible;
+}
+
+.sparklineUp,
+.sparklineDown {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sparklineUp {
+  stroke: var(--teal);
+}
+
+.sparklineDown {
+  stroke: #ff4d4f;
+}
+
+.sparklineFallback {
+  width: 84px;
+  text-align: right;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.marketFallback {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 0.5rem 0;
+}
+
 .positive {
   color: var(--teal);
 }
@@ -633,73 +697,3 @@
   color: var(--text-secondary);
 }
 
-/* Ensure the app container scrolls properly */
-.appContainer {
-  overflow: auto;
-}
-
-/* Add these to the end of your Dashboard.module.css */
-
-.loadingContainer {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background: var(--bg-base);
-  color: #fff;
-}
-
-.loadingSpinner {
-  font-size: 2rem;
-}
-
-.errorContainer {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  background: var(--bg-base);
-  color: #fff;
-  text-align: center;
-  padding: 2rem;
-}
-
-.errorContainer h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.errorContainer p {
-  color: #fc8181;
-  margin-bottom: 1rem;
-}
-
-.retryBtn {
-  padding: 0.75rem 1.5rem;
-  background: var(--gold);
-  color: #000;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.retryBtn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3);
-}
-
-.readTime {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-}
-
-/* Ensure the app container scrolls properly */
-.appContainer {
-  overflow: auto;
-}

@@ -53,6 +53,28 @@
   position: relative;
 }
 
+.titleGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.headerTitle {
+  margin: 0;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: #fff;
+  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+}
+
+.headerSubtitle {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+}
+
 .logo {
   display: flex;
   align-items: center;
@@ -148,6 +170,10 @@
   display: flex;
   gap: 1rem;
   max-width: 85%;
+}
+
+.messageContent {
+  white-space: pre-line;
 }
 
 .aiMessage {
@@ -628,6 +654,14 @@
 }
 
 @media (max-width: 640px) {
+  .headerTitle {
+    font-size: 1.45rem;
+  }
+
+  .headerSubtitle {
+    font-size: 0.82rem;
+  }
+
   .logoText {
     font-size: 1rem;
   }

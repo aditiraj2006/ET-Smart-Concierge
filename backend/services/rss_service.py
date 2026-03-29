@@ -32,7 +32,16 @@ class RSSFeedService:
         "speaking_tree": "https://economictimes.indiatimes.com/opinion/speaking-tree/rssfeeds/52109321.cms",
         "bliss_of_everyday_life": "https://economictimes.indiatimes.com/opinion/bliss-of-everyday-life/rssfeeds/103022834.cms",
         "et_citings": "https://economictimes.indiatimes.com/opinion/et-citings/rssfeeds/18951109.cms",
-        "interviews": "https://economictimes.indiatimes.com/opinion/interviews/rssfeeds/2184566.cms"
+        "interviews": "https://economictimes.indiatimes.com/opinion/interviews/rssfeeds/2184566.cms",
+        
+        #for dashboard
+        "et-wealth": "https://economictimes.indiatimes.com/wealth/et-wealth/rssfeeds/50943048.cms",
+        "et-prime": "https://economictimes.indiatimes.com/prime/rssfeeds/69891145.cms",
+        "et-promotions":  "https://economictimes.indiatimes.com/et-now/et-promotions/rssfeeds/6809269.cms",
+        "et-learn": "https://economictimes.indiatimes.com/market-data/et-learn/rssfeeds/111840820.cms",
+        "plan": "https://economictimes.indiatimes.com/wealth/plan/rssfeeds/49674351.cms",
+        "live-stock": "https://economictimes.indiatimes.com/markets/live-stream/rssfeeds/93033407.cms",
+        
     }
     
     @staticmethod

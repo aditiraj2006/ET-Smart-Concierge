@@ -43,6 +43,8 @@ class UserProfile(BaseModel):
     investment_knowledge: InvestmentKnowledge
     goals: List[FinancialGoal] = []
     persona: str = ""            # e.g. "Beginner Investor", "Aggressive Saver"
+    persona_history: List[dict] = []
+    passive_investor: bool = False
     onboarding_completed: bool = False
     created_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
     updated_at: str = Field(default_factory=lambda: datetime.utcnow().isoformat())
@@ -55,4 +57,5 @@ class ProfileUpdate(BaseModel):
     investment_knowledge: Optional[InvestmentKnowledge] = None
     name: Optional[str] = None
     persona: Optional[str] = None
+    passive_investor: Optional[bool] = None
     onboarding_completed: Optional[bool] = None

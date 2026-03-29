@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function GlassCard({ children, className = '', glow = 'none', hover = false, style }) {
+export default function GlassCard({ children, className = '', glow = 'none', hover = false, style, ...rest }) {
   const glowClass = glow === 'gold' ? 'glass-glow-gold' : glow === 'teal' ? 'glass-glow-teal' : '';
   const hoverClass = hover ? 'glass-hover' : '';
 
@@ -16,6 +16,7 @@ export default function GlassCard({ children, className = '', glow = 'none', hov
       className={`glass-card ${glowClass} ${hoverClass} ${className}`}
       style={style}
       {...motionProps}
+      {...rest}
     >
       {children}
     </motion.div>

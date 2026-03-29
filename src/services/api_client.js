@@ -72,6 +72,10 @@ const api = {
     }),
 
   getGoals: (userId) => request(`/assistant/goals/${userId}`),
+  getJourney: (userId) => request(`/assistant/journey/${userId}`),
+  getNextAction: (userId) => request(`/assistant/next-action/${userId}`),
+  getFinancialScore: (userId) => request(`/assistant/financial-score/${userId}`),
+  getNudges: (userId) => request(`/assistant/nudges/${userId}`),
 
   // ── Profile ───────────────────────────────────────────────────────────
   getProfile:    (userId)          => request(`/profile/${userId}`),
@@ -83,6 +87,8 @@ const api = {
 
   // ── News ──────────────────────────────────────────────────────────────
   getNewsFeed: (userId) => request(`/news/feed/${userId}`),
+  getDashboardFeed: (userId, limit = 6) => request(`/news/dashboard/${userId}?limit=${limit}`),
+  getLiveMarket: () => request('/news/market/live'),
   getArticles: ({ category, is_prime } = {}) => {
     const params = new URLSearchParams();
     if (category  !== undefined) params.append("category",  category);
