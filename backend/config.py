@@ -4,7 +4,7 @@ from typing import List
 
 class Settings(BaseSettings):
     gemini_api_key: str
-    model_id: str = "gemini-3-flash-preview"
+    model_id: str = "gemini-3.1-flash-lite-preview"
     app_env: str = "development"
     cors_origins: str = "http://localhost:5173"
 

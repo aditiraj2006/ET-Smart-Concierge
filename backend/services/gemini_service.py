@@ -140,16 +140,23 @@ Return ONLY JSON (no explanation).
 
 # Add helper for one-shot generation (if not already present)
 def _sync_generate(system: str, prompt: str) -> str:
-    response = _client.models.generate_content(
-        model=settings.model_id,
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=system,
-            temperature=0.7,
-            max_output_tokens=1000,
-        ),
-    )
-    return response.text
+    try:
+        response = _client.models.generate_content(
+            model=settings.model_id,
+            contents=prompt,
+            config=types.GenerateContentConfig(
+                system_instruction=system,
+                temperature=0.7,
+                max_output_tokens=1000,
+            ),
+        )
+        return response.text
+    except Exception as e:
+        error_str = str(e)
+        if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str or "quota" in error_str.lower():
+            logger.warning(f"Gemini API quota exceeded: {e}")
+            return "{}"
+        raise
 
 
 def _fallback_et_journey(user_profile: dict) -> dict:
@@ -776,17 +783,25 @@ async def generate_nudges(user_profile):
 
 
 def _sync_chat(system, history, user_message, temperature: float = 0.9):
-    chat = _client.chats.create(
-        model=settings.model_id,
-        history=history,
-        config=types.GenerateContentConfig(
-            system_instruction=system,
-            temperature=temperature,
-            max_output_tokens=1500,
-        ),
-    )
-    response = chat.send_message(user_message)
-    return response.text
+    try:
+        chat = _client.chats.create(
+            model=settings.model_id,
+            history=history,
+            config=types.GenerateContentConfig(
+                system_instruction=system,
+                temperature=temperature,
+                max_output_tokens=1500,
+            ),
+        )
+        response = chat.send_message(user_message)
+        return response.text
+    except Exception as e:
+        error_str = str(e)
+        if "429" in error_str or "RESOURCE_EXHAUSTED" in error_str or "quota" in error_str.lower():
+            logger.warning(f"Gemini API quota exceeded: {e}")
+            return "Service quota temporarily exceeded. Please try again in a moment."
+        logger.error(f"Gemini chat error: {e}")
+        return "I'm having trouble connecting to the service. Please try again."
 
 
 # ─────────────────────────────────────────────────────────
@@ -870,4 +885,112 @@ User: {message}
             "goal_plan": None,
             "has_plan": False,
             "suggestions": [],
+        }
+
+
+# ─────────────────────────────────────────────────────────
+# 🚀 ONBOARDING CHAT
+# ─────────────────────────────────────────────────────────
+
+_ONBOARDING_SYSTEM = """
+You are ET Smart Concierge's onboarding assistant.
+
+Your job is to collect user profile information through friendly conversation.
+
+Extract these 5 fields:
+1. income_range: below_30k, 30k_60k, 60k_80k, 80k_1l, above_1l
+2. risk_appetite: low, medium, high
+3. knowledge_level: beginner, intermediate, advanced
+4. goals: [list of user's financial goals]
+5. years_to_retirement: number or estimate
+
+Rules:
+- Ask ONE question at a time
+- Be conversational and friendly
+- Confirm understanding ("So you earn between 60k-80k, got it!")
+- When all 5 fields are collected, mark as complete
+
+Return JSON:
+{
+    "reply": "Your response",
+    "is_complete": false,
+    "extracted_profile": {
+        "income_range": "...",
+        "risk_appetite": "...",
+        "knowledge_level": "...",
+        "goals": [...],
+        "years_to_retirement": 0
+    }
+}
+
+Include extracted_profile even if incomplete, with null/empty values for missing fields.
+"""
+
+async def onboarding_chat(message: str, conversation_history: list) -> dict:
+    """Conversational onboarding to collect user profile."""
+    try:
+        history = _history_to_gemini(conversation_history)
+        
+        prompt = (
+            "User message in onboarding flow:\n\n"
+            f"{message}\n\n"
+            "Respond with JSON only (no markdown, no extra text)."
+        )
+        
+        raw = await asyncio.to_thread(
+            _sync_chat,
+            _ONBOARDING_SYSTEM,
+            history,
+            prompt,
+            0.7
+        )
+        
+        # Extract JSON
+        parsed = _extract_first_json_object(raw)
+        
+        if not isinstance(parsed, dict):
+            return {
+                "reply": "I'm having trouble understanding. Could you rephrase that?",
+                "is_complete": False,
+                "extracted_profile": {
+                    "income_range": None,
+                    "risk_appetite": None,
+                    "knowledge_level": None,
+                    "goals": [],
+                    "years_to_retirement": None,
+                }
+            }
+        
+        # Validate response structure
+        reply = str(parsed.get("reply", "")).strip() or "Tell me more about your financial situation."
+        is_complete = bool(parsed.get("is_complete", False))
+        
+        profile = parsed.get("extracted_profile", {})
+        if not isinstance(profile, dict):
+            profile = {}
+        
+        return {
+            "reply": reply,
+            "is_complete": is_complete,
+            "extracted_profile": {
+                "income_range": profile.get("income_range"),
+                "risk_appetite": profile.get("risk_appetite"),
+                "knowledge_level": profile.get("knowledge_level"),
+                "goals": profile.get("goals", []),
+                "years_to_retirement": profile.get("years_to_retirement"),
+            }
+        }
+        
+    except Exception as e:
+        logger.error(f"Onboarding chat error: {e}")
+        return {
+            "reply": "I encountered an error. Please try again.",
+            "is_complete": False,
+            "extracted_profile": {
+                "income_range": None,
+                "risk_appetite": None,
+                "knowledge_level": None,
+                "goals": [],
+                "years_to_retirement": None,
+            }
         }

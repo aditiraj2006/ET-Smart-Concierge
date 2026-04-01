@@ -59,7 +59,7 @@ app.include_router(opportunities.router, prefix="/api/opportunities", tags=["Opp
 async def health_check():
     return {
         "status": "ok",
-        "model": "gemini-3-flash-preview",
+        "model": "gemini-3.1-flash-lite-preview",
         "provider": "Google Gemini",
         "api_docs": "/docs",
     }
